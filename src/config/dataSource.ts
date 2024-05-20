@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { User } from "../models/User.js";  // Use .js extension for ESModules
+import User from "../models/User.js";  // Use .js extension for ESModules
 
 const AppDataSource = new DataSource({
     type: "postgres",
