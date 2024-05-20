@@ -7,6 +7,7 @@ import userRoutes from './routes/UserRoutes.js';
 import session from 'express-session';
 import passport from 'passport';
 import './config/OAuth.js';
+import { authenticateUser } from './utils/authorization.js';
 dotenv.config();
 const app: Express = express();
 const PORT = process.env.PORT || 5000;
@@ -23,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/auth", userRoutes);
-app.get("/", (req: Request, res: Response) => res.send("HI"));
+app.get("/", authenticateUser, (req: Request, res: Response) => res.send("HI"));
 
 
 AppDataSource.initialize().then(() => {
